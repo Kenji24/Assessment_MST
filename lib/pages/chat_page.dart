@@ -1,5 +1,6 @@
-import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
+import 'package:simple_chat_app/model/message_model.dart';
+import 'package:simple_chat_app/service/ai_service.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -9,6 +10,11 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+
+  final List<Message> _messages = [];
+  final TextEditingController _controller = TextEditingController();
+  final openAI = AIService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,8 +25,17 @@ class _ChatPageState extends State<ChatPage> {
           style: TextStyle(color: Colors.black),
         ),
       ),
+      body: Column(
+        children: [
+          Expanded(child: ListView.builder(
+            itemCount: _messages.length,
+            itemBuilder: (_, i){
+              final msg = _messages[i];
+              return Container();
+            },
+          ))
+        ],
+      )
     );
   }
-
-
 }
